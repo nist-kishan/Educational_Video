@@ -20,7 +20,7 @@ const AdvancedSearch = memo(({ onSearch }) => {
   const [showHistory, setShowHistory] = useState(false);
 
   const isDark = mode === 'dark';
-  const API_URL = import.meta.env.VITE_API_URL || ;
+  const API_URL = import.meta.env.VITE_API_URL;
   const token = localStorage.getItem('token');
 
   useEffect(() => {
