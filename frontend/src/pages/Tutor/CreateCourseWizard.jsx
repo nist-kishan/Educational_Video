@@ -246,17 +246,20 @@ const CreateCourseWizard = memo(() => {
           // Create module first
           console.log('🔑 Using httpOnly cookie for authentication');
 
-          const moduleResponse = await fetch(`http://localhost:5000/api/courses/${createdCourse.id}/modules`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            credentials: 'include', // Important for httpOnly cookies
-            body: JSON.stringify({
-              title: module.title,
-              description: module.description
-            })
-          });
+          const moduleResponse = await fetch(
+            `import.meta.env.VITE_API_URL/courses/${createdCourse.id}/modules`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include", // Important for httpOnly cookies
+              body: JSON.stringify({
+                title: module.title,
+                description: module.description,
+              }),
+            }
+          );
 
           if (!moduleResponse.ok) {
             const errorData = await moduleResponse.json().catch(() => ({}));
@@ -340,7 +343,7 @@ const CreateCourseWizard = memo(() => {
               );
 
               const assignmentResponse = await fetch(
-                `http://localhost:5000/api/courses/${createdCourse.id}/modules/${moduleId}/assignments`,
+                `http://localhost/courses/${createdCourse.id}/modules/${moduleId}/assignments`,
                 {
                   method: 'POST',
                   headers: {
